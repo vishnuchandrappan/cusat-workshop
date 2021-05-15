@@ -1,0 +1,5 @@
+- Skeleton
+- Tag
+  - Element names surrounded by angle brackets
+  - Usually come in pairs (start and end tags)
+  - Some tags close themselves
