@@ -1,0 +1,172 @@
+/* fffbdf
+c6ffc1
+34656d
+334443 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fffbdf;
+}
+
+header {
+  background-color: #34656d;
+  padding: 1.3rem;
+  height: 10vh;
+}
+
+header span {
+  font-size: 2rem;
+  color: #fffbdf;
+}
+
+footer {
+  background-color: #334443;
+  padding: 0.5rem;
+  color: #fffbdf;
+  text-align: center;
+  height: 4vh;
+}
+
+main {
+  height: 86vh;
+  padding: 3rem;
+  border-bottom: solid 0.2rem #34656d;
+}
+
+main .content {
+  text-align: center;
+}
+
+main img {
+  display: block;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 10rem gray;
+
+  margin-bottom: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: #334443;
+}
+
+section a {
+  border: solid 1px #34656d;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+}
+
+section {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+section a:hover {
+  background-color: #334443;
+  color: #fffbdf;
+}
+
+/* section a.special {
+  transition:0.6s;
+}
+
+section a.grow {
+  transition: 0.6s;
+} */
+
+section a.grow:hover {
+  transform: scale(1.2);
+}
+
+section a {
+  transition: 0.6s;
+}
+
+section a.elevate:hover {
+  transform: translateY(-1rem);
+}
+
+section a.rotate:hover {
+  transform: rotate(360deg) scale(2);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+main img {
+  transition: 0.5s;
+}
+
+main img:hover {
+  box-shadow: 0 0 10rem #34656d;
+  transform: scale(1.1) rotate(13deg);
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    text-align: center;
+  }
+
+  main img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 1rem;
+  }
+
+  main .content {
+    text-align: justify;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  section a {
+    padding: 0.4rem 0.6rem;
+    text-align: center;
+    margin: 2px 0;
+  }
+}
+
+/* for tablet: make sure its above that of mobile */
+/* @media screen and (max-width: 1024px) {
+
+} */
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1) rotate(-15deg);
+  }
+}
+
+section a.elevate {
+  animation: 1s pulse infinite alternate;
+}
+
+@keyframes jump {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-1rem);
+  }
+}
+
+section a.rotate {
+  animation: 0.4s jump infinite alternate;
+}
