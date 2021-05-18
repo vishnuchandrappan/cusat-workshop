@@ -1,19 +1,35 @@
 const todoForm = document.getElementById("todo-form");
 const todoContainer = document.getElementById("todo-container");
 
-let todos = [];
+function getInitialTodoValues() {
+  const appValues = localStorage.getItem("appValues");
+  if (appValues) {
+    return JSON.parse(appValues);
+  }
 
-const createTodoNode = (todo) => {
+  return [];
+}
+
+const createTodoNode = (todoItem) => {
   const liElement = document.createElement("li");
   liElement.classList.add("list-group-item", "custom-group-item");
-  liElement.innerHTML = `<span>${todo}</span>`;
+  if (todoItem.completed) {
+    liElement.classList.add("completed");
+  }
+  liElement.innerHTML = `<span>${todoItem.todo}</span>`;
+  liElement.setAttribute("id", `attrId${todoItem.id}`);
+
+  liElement.addEventListener("click", () => {
+    todoItem.completed = !todoItem.completed;
+    renderTodos();
+  });
 
   const closeBtn = document.createElement("button");
   closeBtn.classList.add("btn", "btn-danger");
   closeBtn.innerHTML = "<i class='bi bi-x'></i>";
 
   closeBtn.addEventListener("click", () => {
-    deleteTodo(todo);
+    deleteTodo(todoItem.id);
   });
 
   liElement.appendChild(closeBtn);
@@ -21,21 +37,17 @@ const createTodoNode = (todo) => {
   return liElement;
 };
 
-setTodos = (newTodos) => {
-  todos = newTodos;
-  renderTodos();
+const saveTodos = () => {
+  const stringifiedTodos = JSON.stringify(todos);
+  localStorage.setItem("appValues", stringifiedTodos);
 };
-
-addTodo = (todo) => {
-  todos.push(todo);
-  renderTodos();
-};
-
-const deleteTodo = (todoToBeDeleted) => {
-  setTodos(todos.filter((todo) => todo !== todoToBeDeleted));
+const clearInput = () => {
+  todoForm.children[0].value = "";
 };
 
 const renderTodos = () => {
+  saveTodos();
+
   todoContainer.innerHTML = "";
   todos.forEach((todo) => {
     todoContainer.appendChild(createTodoNode(todo));
@@ -43,13 +55,30 @@ const renderTodos = () => {
   clearInput();
 };
 
+let todos = getInitialTodoValues();
+renderTodos();
+
+setTodos = (newTodos) => {
+  todos = newTodos;
+  renderTodos();
+};
+
+addTodo = (todo) => {
+  todos.push({
+    id: Date.now(),
+    todo,
+    completed: false,
+  });
+  renderTodos();
+};
+
+const deleteTodo = (todoIdToBeDeleted) => {
+  setTodos(todos.filter((todo) => todo.id !== todoIdToBeDeleted));
+};
+
 const handleFormSubmission = (event) => {
   event.preventDefault();
   addTodo(event.target.children[0].value);
-};
-
-const clearInput = () => {
-  todoForm.children[0].value = "";
 };
 
 todoForm.addEventListener("submit", handleFormSubmission);

@@ -39,6 +39,17 @@ header h1 {
   font-size: 3rem;
 }
 
+@media screen and (max-width: 768px) {
+  header {
+    height: 6rem;
+  }
+
+  header h1 {
+    letter-spacing: auto;
+    font-size: 2.3rem;
+  }
+}
+
 button {
   display: flex;
   align-items: center;
@@ -65,8 +76,37 @@ button {
   margin: 0 0.3rem;
 }
 
+@media screen and (max-width: 768px) {
+  .custom-group {
+    flex-direction: column;
+  }
+  .custom-group button {
+    margin: 0.3rem 0;
+  }
+}
+
 .custom-group-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  cursor: pointer;
+
+  animation: fadeIn 0.6s ease-in;
+}
+
+.completed {
+  background-color: var(--color-light-2);
+  color: var(--color-dark);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
