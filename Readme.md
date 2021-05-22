@@ -7,5 +7,9 @@
  - Basic building blocks of web
 
 ## Prerequisites
-- A text editor (preferably VS-Code)
-- Any browser
+[Refer document](https://docs.google.com/document/d/1IKF25DCuTfzZzIwzGqBioPd2PsRsj8n7US2r9eGZFEA/edit?usp=sharing)
+
+If link doesn't work,
+```
+https://docs.google.com/document/d/1IKF25DCuTfzZzIwzGqBioPd2PsRsj8n7US2r9eGZFEA/edit?usp=sharing
+```
